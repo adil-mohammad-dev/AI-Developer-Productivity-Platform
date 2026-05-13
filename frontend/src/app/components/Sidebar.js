@@ -12,6 +12,7 @@ export default function Sidebar() {
     { name: "Review History", href: "/history" },
     { name: "GitHub Analyzer", href: "/github-analyzer" },
     { name: "README Generator", href: "/readme-generator" }
+    { name: "AI Chat Assistant", href: "/ai-chat" }
   ];
 
   function handleLogout() {
