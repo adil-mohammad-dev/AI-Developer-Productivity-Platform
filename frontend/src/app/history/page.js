@@ -19,7 +19,7 @@ export default function HistoryPage() {
     try {
 
       const response = await fetch(
-        "http://127.0.0.1:8000/reviews/history"
+        "https://ai-developer-productivity-platform.onrender.com/reviews/history"
       );
 
       const data = await response.json();
