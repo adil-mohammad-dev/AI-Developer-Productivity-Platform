@@ -1,6 +1,6 @@
 "use client";
 
-import { Github, Linkedin } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "lucide-react";
 
 export default function Footer() {
 
@@ -24,7 +24,7 @@ export default function Footer() {
             target="_blank"
             className="hover:text-white transition"
           >
-            <Github size={24} />
+            <GithubIcon size={24} />
           </a>
 
           <a
@@ -32,7 +32,7 @@ export default function Footer() {
             target="_blank"
             className="hover:text-white transition"
           >
-            <Linkedin size={24} />
+            <LinkedinIcon size={24} />
           </a>
 
         </div>

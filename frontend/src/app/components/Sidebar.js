@@ -11,7 +11,7 @@ export default function Sidebar() {
     { name: "AI Code Review", href: "/review" },
     { name: "Review History", href: "/history" },
     { name: "GitHub Analyzer", href: "/github-analyzer" },
-    { name: "README Generator", href: "/readme-generator" }
+    { name: "README Generator", href: "/readme-generator" },
     { name: "AI Chat Assistant", href: "/ai-chat" }
   ];
 
