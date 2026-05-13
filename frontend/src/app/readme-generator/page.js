@@ -31,7 +31,7 @@ export default function ReadmeGeneratorPage() {
     try {
 
       const response = await fetch(
-        "http://127.0.0.1:8000/readme/generate",
+        "https://ai-developer-productivity-platform.onrender.com/readme/generate",
         {
           method: "POST",
           headers: {

@@ -27,7 +27,7 @@ export default function ReviewPage() {
     try {
 
       const response = await fetch(
-        "http://127.0.0.1:8000/reviews/code",
+        "https://ai-developer-productivity-platform.onrender.com/reviews/code",
         {
           method: "POST",
           headers: {
