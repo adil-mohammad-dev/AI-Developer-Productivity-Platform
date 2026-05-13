@@ -2,12 +2,26 @@ from groq import Groq
 from dotenv import load_dotenv
 import os
 import json
+import re
 
 load_dotenv()
 
 client = Groq(
     api_key=os.getenv("GROQ_API_KEY")
 )
+
+
+def clean_ai_json_response(ai_response):
+    ai_response = ai_response.replace("```json", "")
+    ai_response = ai_response.replace("```", "")
+    ai_response = ai_response.strip()
+
+    match = re.search(r"\{.*\}", ai_response, re.DOTALL)
+
+    if match:
+        ai_response = match.group(0)
+
+    return ai_response
 
 
 def analyze_code(language, code):
@@ -31,7 +45,14 @@ Focus ONLY on:
 - best practices
 - cleaner implementation
 
-Return ONLY valid JSON in this exact format:
+Return ONLY valid JSON.
+Do not use markdown.
+Do not use ```json.
+Do not use triple quotes.
+For improved_code, use a normal JSON string with \\n for new lines.
+All list items must be strings only, not objects.
+
+Return JSON in this exact format:
 
 {{
   "score": 0,
@@ -56,14 +77,11 @@ Code:
                 "content": prompt
             }
         ],
-        temperature=0.1
+        temperature=0
     )
 
     ai_response = response.choices[0].message.content
-
-    ai_response = ai_response.replace("```json", "")
-    ai_response = ai_response.replace("```", "")
-    ai_response = ai_response.strip()
+    ai_response = clean_ai_json_response(ai_response)
 
     try:
         return json.loads(ai_response)
@@ -78,6 +96,8 @@ Code:
             "improved_code": "",
             "explanation": ai_response
         }
+
+
 def analyze_github_repo(repo_data):
 
     prompt = f"""
@@ -94,6 +114,9 @@ Provide:
 - improvement suggestions
 
 Return ONLY valid JSON.
+Do not use markdown.
+Do not use ```json.
+All list items must be strings only, not objects.
 
 Format:
 
@@ -118,14 +141,11 @@ Repository Data:
                 "content": prompt
             }
         ],
-        temperature=0.2
+        temperature=0.1
     )
 
     ai_response = response.choices[0].message.content
-
-    ai_response = ai_response.replace("```json", "")
-    ai_response = ai_response.replace("```", "")
-    ai_response = ai_response.strip()
+    ai_response = clean_ai_json_response(ai_response)
 
     try:
         return json.loads(ai_response)
@@ -138,6 +158,8 @@ Repository Data:
             "scalability": "",
             "suggestions": []
         }
+
+
 def generate_readme(project_name, description, tech_stack, features):
 
     prompt = f"""
