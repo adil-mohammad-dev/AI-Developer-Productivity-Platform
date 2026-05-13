@@ -1,0 +1,90 @@
+import {
+  Code,
+  ShieldCheck,
+  Bug,
+  GitBranch
+} from "lucide-react";
+
+export default function Home() {
+
+  const features = [
+    {
+      icon: <Code size={32} />,
+      title: "AI Code Review",
+      description: "Analyze code quality using Groq-powered AI."
+    },
+    {
+      icon: <Bug size={32} />,
+      title: "Bug Detection",
+      description: "Detect bugs and vulnerabilities instantly."
+    },
+    {
+      icon: <ShieldCheck size={32} />,
+      title: "Performance Optimization",
+      description: "Improve performance with AI suggestions."
+    },
+    {
+      icon: <GitBranch size={32} />,
+      title: "GitHub Analyzer",
+      description: "Analyze repositories and generate insights."
+    }
+  ];
+
+  return (
+    <main className="min-h-screen bg-black text-white">
+
+      <nav className="flex justify-between items-center px-10 py-6 border-b border-gray-800">
+        <h1 className="text-2xl font-bold">
+          AI Dev Platform
+        </h1>
+
+        <button className="bg-white text-black px-5 py-2 rounded-lg font-medium hover:bg-gray-200 transition">
+          Get Started
+        </button>
+      </nav>
+
+      <section className="flex flex-col items-center justify-center text-center py-28 px-6">
+        <h1 className="text-6xl font-bold max-w-5xl leading-tight mb-8">
+          AI-Powered Developer Productivity Platform
+        </h1>
+
+        <p className="text-gray-400 text-xl max-w-3xl mb-10">
+          Analyze code, detect bugs, optimize performance,
+          review repositories, and generate developer insights using AI.
+        </p>
+
+        <div className="flex gap-5">
+          <button className="bg-white text-black px-6 py-3 rounded-xl font-semibold hover:bg-gray-200 transition">
+            Start Reviewing
+          </button>
+
+          <button className="border border-gray-700 px-6 py-3 rounded-xl hover:bg-gray-900 transition">
+            View Features
+          </button>
+        </div>
+      </section>
+
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-10 pb-20">
+        {features.map((feature, index) => (
+          <div
+            key={index}
+            className="border border-gray-800 rounded-2xl p-6 bg-gray-950 hover:border-gray-600 transition"
+          >
+            <div className="mb-4 text-white">
+              {feature.icon}
+            </div>
+
+            <h2 className="text-xl font-semibold mb-3">
+              {feature.title}
+            </h2>
+
+            <p className="text-gray-400">
+              {feature.description}
+            </p>
+          </div>
+        ))}
+      </section>
+
+    </main>
+  );
+}
