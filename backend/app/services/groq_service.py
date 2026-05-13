@@ -206,3 +206,26 @@ Return only markdown.
     )
 
     return response.choices[0].message.content
+def chat_with_ai(message):
+
+    prompt = f"""
+You are an AI developer assistant.
+
+Help the user with programming, debugging, code explanation, optimization, and software engineering questions.
+
+User question:
+{message}
+"""
+
+    response = client.chat.completions.create(
+        model="llama-3.1-8b-instant",
+        messages=[
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ],
+        temperature=0.3
+    )
+
+    return response.choices[0].message.content

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import ProtectedRoute from "../components/temp";
 import Footer from "../components/Footer";
+import toast from "react-hot-toast";
 
 export default function ReadmeGeneratorPage() {
 
@@ -19,11 +20,31 @@ export default function ReadmeGeneratorPage() {
 
   const [loading, setLoading] = useState(false);
 
+  function copyReadme() {
+  navigator.clipboard.writeText(readme);
+  toast.success("README copied successfully");
+}
+  function downloadReadme() {
+  const blob = new Blob([readme], {
+    type: "text/markdown"
+  });
+
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "README.md";
+  link.click();
+
+  URL.revokeObjectURL(url);
+
+  toast.success("README downloaded successfully");
+}
 
   async function generateReadme() {
 
     if (!projectName || !description || !techStack || !features) {
-      alert("Please fill all fields");
+      toast.error("Please fill all fields");
       return;
     }
 
@@ -55,7 +76,7 @@ export default function ReadmeGeneratorPage() {
 
       console.log(error);
 
-      alert("Failed to generate README");
+      toast.error("Failed to generate README");
 
     }
 
@@ -132,23 +153,40 @@ export default function ReadmeGeneratorPage() {
           </div>
 
           {/* README Output */}
-          {
-            readme && (
+{
+  readme && (
 
-              <div className="bg-gray-950 border border-gray-800 rounded-3xl p-8">
+    <div className="bg-gray-950 border border-gray-800 rounded-3xl p-8">
 
-                <h2 className="text-3xl font-bold mb-6">
-                  Generated README
-                </h2>
+      <div className="flex justify-between items-center mb-6">
 
-                <pre className="bg-black border border-gray-800 p-6 rounded-2xl overflow-auto text-green-400 whitespace-pre-wrap">
-                  {readme}
-                </pre>
+        <h2 className="text-3xl font-bold">
+          Generated README
+        </h2>
 
-              </div>
+        <button
+          onClick={copyReadme}
+          className="bg-white text-black px-5 py-2 rounded-xl font-semibold hover:bg-gray-200 transition"
+        >
+          Copy README
+        </button>
+        <button
+  onClick={downloadReadme}
+  className="border border-gray-700 px-5 py-2 rounded-xl font-semibold hover:bg-gray-900 transition"
+>
+  Download README
+</button>
 
-            )
-          }
+      </div>
+
+      <pre className="bg-black border border-gray-800 p-6 rounded-2xl overflow-auto text-green-400 whitespace-pre-wrap">
+        {readme}
+      </pre>
+
+    </div>
+
+  )
+}
 
         </section>
         <Footer />

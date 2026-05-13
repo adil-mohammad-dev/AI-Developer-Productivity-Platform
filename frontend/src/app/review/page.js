@@ -4,6 +4,7 @@ import { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import ProtectedRoute from "../components/temp";
 import Footer from "../components/Footer";
+import toast from "react-hot-toast";
 
 export default function ReviewPage() {
 
@@ -18,8 +19,18 @@ export default function ReviewPage() {
 
   async function analyzeCode() {
 
+    function copyImprovedCode() {
+
+  navigator.clipboard.writeText(
+    review.improved_code
+  );
+
+  toast.success("Improved code copied successfully");
+
+}
+
     if (code.trim() === "") {
-      alert("Please enter code");
+      toast.error("Please enter code");
       return;
     }
 
@@ -49,7 +60,7 @@ export default function ReviewPage() {
 
       console.log(error);
 
-      alert("Backend connection failed");
+      toast.error("Backend connection failed");
 
     }
 
@@ -210,18 +221,29 @@ export default function ReviewPage() {
 
                 </div>
 
-                {/* Improved Code */}
-                <div>
+               {/* Improved Code */}
+<div>
 
-                  <h3 className="text-2xl font-semibold mb-3 text-green-400">
-                    Improved Code
-                  </h3>
+  <div className="flex justify-between items-center mb-3">
 
-                  <pre className="bg-black border border-gray-800 p-6 rounded-2xl overflow-auto text-green-400">
-                    {review.improved_code}
-                  </pre>
+    <h3 className="text-2xl font-semibold text-green-400">
+      Improved Code
+    </h3>
 
-                </div>
+    <button
+      onClick={copyImprovedCode}
+      className="bg-white text-black px-5 py-2 rounded-xl font-semibold hover:bg-gray-200 transition"
+    >
+      Copy Code
+    </button>
+
+  </div>
+
+  <pre className="bg-black border border-gray-800 p-6 rounded-2xl overflow-auto text-green-400">
+    {review.improved_code}
+  </pre>
+
+</div>
 
                 {/* Explanation */}
                 <div>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Footer from "../components/Footer";
+import toast from "react-hot-toast";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -13,7 +14,7 @@ export default function LoginPage() {
 
   async function handleLogin() {
     if (!email || !password) {
-      alert("Please fill all fields");
+      toast.error("Please fill all fields");
       return;
     }
 
@@ -32,17 +33,17 @@ export default function LoginPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        alert(data.detail || "Login failed");
+        toast.error(data.detail || "Login failed");
         return;
       }
 
       localStorage.setItem("token", data.access_token);
 
-      alert("Login successful");
+      toast.success("Login successful");
       router.push("/review");
     } catch (error) {
       console.log(error);
-      alert("Backend connection failed");
+      toast.error("Backend connection failed");
     }
   }
 

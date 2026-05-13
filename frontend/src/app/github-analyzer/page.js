@@ -4,6 +4,7 @@ import { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import ProtectedRoute from "../components/temp";
 import Footer from "../components/Footer";
+import toast from "react-hot-toast";
 
 export default function GithubAnalyzerPage() {
 
@@ -16,7 +17,7 @@ export default function GithubAnalyzerPage() {
   async function analyzeRepository() {
 
     if (repoUrl.trim() === "") {
-      alert("Please enter GitHub repository URL");
+      toast.error("Please enter GitHub repository URL");
       return;
     }
 
@@ -45,7 +46,7 @@ export default function GithubAnalyzerPage() {
 
       console.log(error);
 
-      alert("Failed to analyze repository");
+      toast.error("Failed to analyze repository");
 
     }
 
