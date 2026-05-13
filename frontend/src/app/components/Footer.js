@@ -22,6 +22,7 @@ export default function Footer() {
           <a
             href="https://github.com/adil-mohammad-dev"
             target="_blank"
+            rel="noopener noreferrer"
             className="hover:text-white transition"
           >
             <GithubIcon size={24} />
@@ -30,6 +31,7 @@ export default function Footer() {
           <a
             href="https://www.linkedin.com/in/mohammad-adil-dev/"
             target="_blank"
+            rel="noopener noreferrer"
             className="hover:text-white transition"
           >
             <LinkedinIcon size={24} />
