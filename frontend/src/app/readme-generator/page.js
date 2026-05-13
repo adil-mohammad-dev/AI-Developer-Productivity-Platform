@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Sidebar from "../components/Sidebar";
+import ProtectedRoute from "../components/temp";
 
 export default function ReadmeGeneratorPage() {
 
@@ -63,91 +64,95 @@ export default function ReadmeGeneratorPage() {
 
   return (
 
-    <main className="min-h-screen bg-black text-white flex">
+    <ProtectedRoute>
 
-      {/* Sidebar */}
-      <Sidebar />
+      <main className="min-h-screen bg-black text-white flex">
 
-      {/* Main Content */}
-      <section className="flex-1 p-10 overflow-auto">
+        {/* Sidebar */}
+        <Sidebar />
 
-        <h1 className="text-5xl font-bold mb-3">
-          README Generator
-        </h1>
+        {/* Main Content */}
+        <section className="flex-1 p-10 overflow-auto">
 
-        <p className="text-gray-400 mb-10">
-          Generate professional GitHub README files using AI.
-        </p>
+          <h1 className="text-5xl font-bold mb-3">
+            README Generator
+          </h1>
 
-        {/* Form */}
-        <div className="bg-gray-950 border border-gray-800 rounded-3xl p-8 mb-10">
+          <p className="text-gray-400 mb-10">
+            Generate professional GitHub README files using AI.
+          </p>
 
-          <input
-            className="w-full bg-black border border-gray-700 rounded-xl p-4 mb-5"
-            placeholder="Project Name"
-            value={projectName}
-            onChange={(e) => setProjectName(e.target.value)}
-          />
+          {/* Form */}
+          <div className="bg-gray-950 border border-gray-800 rounded-3xl p-8 mb-10">
 
-          <textarea
-            className="w-full bg-black border border-gray-700 rounded-xl p-4 mb-5"
-            rows="4"
-            placeholder="Project Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
+            <input
+              className="w-full bg-black border border-gray-700 rounded-xl p-4 mb-5"
+              placeholder="Project Name"
+              value={projectName}
+              onChange={(e) => setProjectName(e.target.value)}
+            />
 
-          <input
-            className="w-full bg-black border border-gray-700 rounded-xl p-4 mb-5"
-            placeholder="Tech Stack e.g. FastAPI, Next.js, PostgreSQL"
-            value={techStack}
-            onChange={(e) => setTechStack(e.target.value)}
-          />
+            <textarea
+              className="w-full bg-black border border-gray-700 rounded-xl p-4 mb-5"
+              rows="4"
+              placeholder="Project Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
 
-          <textarea
-            className="w-full bg-black border border-gray-700 rounded-xl p-4 mb-5"
-            rows="4"
-            placeholder="Features e.g. AI code review, GitHub analyzer"
-            value={features}
-            onChange={(e) => setFeatures(e.target.value)}
-          />
+            <input
+              className="w-full bg-black border border-gray-700 rounded-xl p-4 mb-5"
+              placeholder="Tech Stack e.g. FastAPI, Next.js, PostgreSQL"
+              value={techStack}
+              onChange={(e) => setTechStack(e.target.value)}
+            />
 
-          <button
-            onClick={generateReadme}
-            className="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:bg-gray-200 transition"
-          >
+            <textarea
+              className="w-full bg-black border border-gray-700 rounded-xl p-4 mb-5"
+              rows="4"
+              placeholder="Features e.g. AI code review, GitHub analyzer"
+              value={features}
+              onChange={(e) => setFeatures(e.target.value)}
+            />
 
-            {
-              loading
-                ? "Generating..."
-                : "Generate README"
-            }
+            <button
+              onClick={generateReadme}
+              className="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:bg-gray-200 transition"
+            >
 
-          </button>
+              {
+                loading
+                  ? "Generating..."
+                  : "Generate README"
+              }
 
-        </div>
+            </button>
 
-        {/* README Output */}
-        {
-          readme && (
+          </div>
 
-            <div className="bg-gray-950 border border-gray-800 rounded-3xl p-8">
+          {/* README Output */}
+          {
+            readme && (
 
-              <h2 className="text-3xl font-bold mb-6">
-                Generated README
-              </h2>
+              <div className="bg-gray-950 border border-gray-800 rounded-3xl p-8">
 
-              <pre className="bg-black border border-gray-800 p-6 rounded-2xl overflow-auto text-green-400 whitespace-pre-wrap">
-                {readme}
-              </pre>
+                <h2 className="text-3xl font-bold mb-6">
+                  Generated README
+                </h2>
 
-            </div>
+                <pre className="bg-black border border-gray-800 p-6 rounded-2xl overflow-auto text-green-400 whitespace-pre-wrap">
+                  {readme}
+                </pre>
 
-          )
-        }
+              </div>
 
-      </section>
+            )
+          }
 
-    </main>
+        </section>
+
+      </main>
+
+    </ProtectedRoute>
   );
 }

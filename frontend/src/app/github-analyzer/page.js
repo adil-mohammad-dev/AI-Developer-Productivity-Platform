@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Sidebar from "../components/Sidebar";
+import ProtectedRoute from "../components/temp";
 
 export default function GithubAnalyzerPage() {
 
@@ -10,7 +11,6 @@ export default function GithubAnalyzerPage() {
   const [result, setResult] = useState(null);
 
   const [loading, setLoading] = useState(false);
-
 
   async function analyzeRepository() {
 
@@ -51,249 +51,187 @@ export default function GithubAnalyzerPage() {
     setLoading(false);
   }
 
-
   return (
 
-    <main className="min-h-screen bg-black text-white flex">
+    <ProtectedRoute>
 
-      {/* Sidebar */}
-      <Sidebar />
+      <main className="min-h-screen bg-black text-white flex">
 
-      {/* Main Content */}
-      <section className="flex-1 p-10 overflow-auto">
+        <Sidebar />
 
-        {/* Header */}
-        <div className="mb-10">
+        <section className="flex-1 p-10 overflow-auto">
 
-          <h1 className="text-5xl font-bold mb-3">
-            GitHub Repository Analyzer
-          </h1>
+          <div className="mb-10">
 
-          <p className="text-gray-400">
-            Analyze GitHub repositories using AI.
-          </p>
+            <h1 className="text-5xl font-bold mb-3">
+              GitHub Repository Analyzer
+            </h1>
 
-        </div>
+            <p className="text-gray-400">
+              Analyze GitHub repositories using AI.
+            </p>
 
-        {/* Input */}
-        <div className="bg-gray-950 border border-gray-800 rounded-3xl p-8 mb-10">
+          </div>
 
-          <h2 className="text-2xl font-semibold mb-6">
-            Repository URL
-          </h2>
+          <div className="bg-gray-950 border border-gray-800 rounded-3xl p-8 mb-10">
 
-          <input
-            type="text"
-            placeholder="https://github.com/vercel/next.js"
-            value={repoUrl}
-            onChange={(e) => setRepoUrl(e.target.value)}
-            className="w-full bg-black border border-gray-700 rounded-2xl p-5 mb-6 outline-none"
-          />
+            <h2 className="text-2xl font-semibold mb-6">
+              Repository URL
+            </h2>
 
-          <button
-            onClick={analyzeRepository}
-            className="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:bg-gray-200 transition"
-          >
+            <input
+              type="text"
+              placeholder="https://github.com/vercel/next.js"
+              value={repoUrl}
+              onChange={(e) => setRepoUrl(e.target.value)}
+              className="w-full bg-black border border-gray-700 rounded-2xl p-5 mb-6 outline-none"
+            />
 
-            {
-              loading
-                ? "Analyzing..."
-                : "Analyze Repository"
-            }
+            <button
+              onClick={analyzeRepository}
+              className="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:bg-gray-200 transition"
+            >
 
-          </button>
+              {
+                loading
+                  ? "Analyzing..."
+                  : "Analyze Repository"
+              }
 
-        </div>
+            </button>
 
-        {/* Result */}
-        {
-          result && (
+          </div>
 
-            <div className="space-y-8">
+          {
+            result && (
 
-              {/* Repo Info */}
-              <div className="bg-gray-950 border border-gray-800 rounded-3xl p-8">
+              <div className="space-y-8">
 
-                <h2 className="text-3xl font-bold mb-6">
-                  Repository Details
-                </h2>
+                <div className="bg-gray-950 border border-gray-800 rounded-3xl p-8">
 
-                <div className="space-y-4">
+                  <h2 className="text-3xl font-bold mb-6">
+                    Repository Details
+                  </h2>
 
-                  <p>
-                    <span className="font-semibold">
-                      Name:
-                    </span>{" "}
-                    {result.repository.name}
-                  </p>
+                  <div className="space-y-4">
 
-                  <p>
-                    <span className="font-semibold">
-                      Description:
-                    </span>{" "}
-                    {result.repository.description}
-                  </p>
+                    <p>
+                      <span className="font-semibold">
+                        Name:
+                      </span>{" "}
+                      {result.repository.name}
+                    </p>
 
-                  <p>
-                    <span className="font-semibold">
-                      Language:
-                    </span>{" "}
-                    {result.repository.language}
-                  </p>
+                    <p>
+                      <span className="font-semibold">
+                        Description:
+                      </span>{" "}
+                      {result.repository.description}
+                    </p>
 
-                  <p>
-                    <span className="font-semibold">
-                      Stars:
-                    </span>{" "}
-                    {result.repository.stars}
-                  </p>
+                    <p>
+                      <span className="font-semibold">
+                        Language:
+                      </span>{" "}
+                      {result.repository.language}
+                    </p>
 
-                  <p>
-                    <span className="font-semibold">
-                      Forks:
-                    </span>{" "}
-                    {result.repository.forks}
-                  </p>
+                    <p>
+                      <span className="font-semibold">
+                        Stars:
+                      </span>{" "}
+                      {result.repository.stars}
+                    </p>
 
-                </div>
-
-              </div>
-
-              {/* AI Analysis */}
-              <div className="bg-gray-950 border border-gray-800 rounded-3xl p-8">
-
-                <h2 className="text-3xl font-bold mb-8">
-                  AI Analysis
-                </h2>
-
-                <div className="space-y-8">
-
-                  {/* Summary */}
-                  <div>
-
-                    <h3 className="text-2xl font-semibold mb-3">
-                      Summary
-                    </h3>
-
-                    <p className="text-gray-300">
-                      {result.analysis.summary}
+                    <p>
+                      <span className="font-semibold">
+                        Forks:
+                      </span>{" "}
+                      {result.repository.forks}
                     </p>
 
                   </div>
 
-                  {/* Tech Stack */}
-                  <div>
+                </div>
 
-                    <h3 className="text-2xl font-semibold mb-3">
-                      Tech Stack
-                    </h3>
+                <div className="bg-gray-950 border border-gray-800 rounded-3xl p-8">
 
-                    <div className="flex flex-wrap gap-3">
+                  <h2 className="text-3xl font-bold mb-8">
+                    AI Analysis
+                  </h2>
 
-                      {
-                        result.analysis.tech_stack?.map((tech, index) => (
+                  <div className="space-y-8">
 
-                          <div
-                            key={index}
-                            className="bg-green-500/20 text-green-400 px-4 py-2 rounded-xl"
-                          >
-                            {tech}
-                          </div>
+                    <div>
 
-                        ))
-                      }
+                      <h3 className="text-2xl font-semibold mb-3">
+                        Summary
+                      </h3>
+
+                      <p className="text-gray-300">
+                        {result.analysis.summary}
+                      </p>
+
+                    </div>
+
+                    <div>
+
+                      <h3 className="text-2xl font-semibold mb-3">
+                        Tech Stack
+                      </h3>
+
+                      <div className="flex flex-wrap gap-3">
+
+                        {
+                          result.analysis.tech_stack?.map((tech, index) => (
+
+                            <div
+                              key={index}
+                              className="bg-green-500/20 text-green-400 px-4 py-2 rounded-xl"
+                            >
+                              {tech}
+                            </div>
+
+                          ))
+                        }
+
+                      </div>
+
+                    </div>
+
+                    <div>
+
+                      <h3 className="text-2xl font-semibold mb-3 text-green-400">
+                        Strengths
+                      </h3>
+
+                      <ul className="list-disc pl-6 text-gray-300 space-y-2">
+
+                        {
+                          result.analysis.strengths?.map((item, index) => (
+                            <li key={index}>
+                              {item}
+                            </li>
+                          ))
+                        }
+
+                      </ul>
 
                     </div>
 
                   </div>
 
-                  {/* Strengths */}
-                  <div>
-
-                    <h3 className="text-2xl font-semibold mb-3 text-green-400">
-                      Strengths
-                    </h3>
-
-                    <ul className="list-disc pl-6 text-gray-300 space-y-2">
-
-                      {
-                        result.analysis.strengths?.map((item, index) => (
-                          <li key={index}>
-                            {item}
-                          </li>
-                        ))
-                      }
-
-                    </ul>
-
-                  </div>
-
-                  {/* Weaknesses */}
-                  <div>
-
-                    <h3 className="text-2xl font-semibold mb-3 text-red-400">
-                      Weaknesses
-                    </h3>
-
-                    <ul className="list-disc pl-6 text-gray-300 space-y-2">
-
-                      {
-                        result.analysis.weaknesses?.map((item, index) => (
-                          <li key={index}>
-                            {item}
-                          </li>
-                        ))
-                      }
-
-                    </ul>
-
-                  </div>
-
-                  {/* Scalability */}
-                  <div>
-
-                    <h3 className="text-2xl font-semibold mb-3">
-                      Scalability
-                    </h3>
-
-                    <p className="text-gray-300">
-                      {result.analysis.scalability}
-                    </p>
-
-                  </div>
-
-                  {/* Suggestions */}
-                  <div>
-
-                    <h3 className="text-2xl font-semibold mb-3 text-yellow-400">
-                      Suggestions
-                    </h3>
-
-                    <ul className="list-disc pl-6 text-gray-300 space-y-2">
-
-                      {
-                        result.analysis.suggestions?.map((item, index) => (
-                          <li key={index}>
-                            {item}
-                          </li>
-                        ))
-                      }
-
-                    </ul>
-
-                  </div>
-
                 </div>
 
               </div>
 
-            </div>
+            )
+          }
 
-          )
-        }
+        </section>
 
-      </section>
+      </main>
 
-    </main>
+    </ProtectedRoute>
   );
 }

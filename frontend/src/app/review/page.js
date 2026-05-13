@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Sidebar from "../components/Sidebar";
+import ProtectedRoute from "../components/temp";
 
 export default function ReviewPage() {
 
@@ -55,6 +56,8 @@ export default function ReviewPage() {
   }
 
   return (
+
+    <ProtectedRoute>
 
     <main className="min-h-screen bg-black text-white flex">
 
@@ -242,5 +245,6 @@ export default function ReviewPage() {
       </section>
 
     </main>
+    </ProtectedRoute>
   );
 }
