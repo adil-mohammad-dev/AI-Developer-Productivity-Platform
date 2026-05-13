@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import ProtectedRoute from "../components/temp";
+import Footer from "../components/Footer";
 
 export default function ReviewPage() {
 
@@ -243,6 +244,7 @@ export default function ReviewPage() {
         }
 
       </section>
+      <Footer />
 
     </main>
     </ProtectedRoute>

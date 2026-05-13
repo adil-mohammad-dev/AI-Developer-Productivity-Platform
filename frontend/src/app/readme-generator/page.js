@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import ProtectedRoute from "../components/temp";
+import Footer from "../components/Footer";
 
 export default function ReadmeGeneratorPage() {
 
@@ -150,6 +151,7 @@ export default function ReadmeGeneratorPage() {
           }
 
         </section>
+        <Footer />
 
       </main>
 

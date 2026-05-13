@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Footer from "../components/Footer";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -89,6 +90,7 @@ export default function RegisterPage() {
           </Link>
         </p>
       </div>
+        <Footer />
     </main>
   );
 }

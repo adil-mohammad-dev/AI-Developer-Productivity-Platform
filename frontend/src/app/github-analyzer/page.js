@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import ProtectedRoute from "../components/temp";
+import Footer from "../components/Footer";
 
 export default function GithubAnalyzerPage() {
 
@@ -229,6 +230,7 @@ export default function GithubAnalyzerPage() {
           }
 
         </section>
+        <Footer />
 
       </main>
 

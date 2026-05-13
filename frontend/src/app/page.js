@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Footer from "../components/Footer";
 
 import {
   Code,
@@ -110,6 +111,7 @@ export default function Home() {
         ))}
 
       </section>
+      <Footer />
 
     </main>
   );
