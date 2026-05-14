@@ -10,6 +10,7 @@ export default function LoginPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handleLogin() {
     if (!email || !password) {
