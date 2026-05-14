@@ -52,13 +52,13 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center text-center py-28 px-6">
+      <section className="flex flex-col items-center justify-center text-center py-6 md:py-8 px-6">
 
-        <h1 className="text-6xl font-bold max-w-5xl leading-tight mb-8">
-          AI-Powered Developer Productivity Platform
-        </h1>
+        <h1 className="text-4xl md:text-5xl font-bold max-w-5xl leading-tight mb-6">
+  AI-Powered Developer Productivity Platform
+</h1>
 
-        <p className="text-gray-400 text-xl max-w-3xl mb-10">
+        <p className="text-gray-400 text-lg md:text-xl max-w-3xl mb-10">
           Analyze code, detect bugs, optimize performance,
           review repositories, and generate developer insights using AI.
         </p>
@@ -84,7 +84,7 @@ export default function Home() {
       {/* Features */}
       <section
         id="features"
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-10 pb-20"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-10 pb-2"
       >
 
         {features.map((feature, index) => (
