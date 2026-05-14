@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Footer from "../components/Footer";
 import toast from "react-hot-toast";
 
 export default function LoginPage() {
@@ -19,16 +18,19 @@ export default function LoginPage() {
     }
 
     try {
-      const response = await fetch("https://ai-developer-productivity-platform.onrender.com/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          email,
-          password
-        })
-      });
+      const response = await fetch(
+        "https://ai-developer-productivity-platform.onrender.com/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        }
+      );
 
       const data = await response.json();
 
@@ -48,15 +50,18 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen bg-black text-white flex items-center justify-center p-6">
-      <div className="w-full max-w-md bg-gray-950 border border-gray-800 rounded-3xl p-8">
-        <h1 className="text-4xl font-bold mb-3">Login</h1>
+    <main className="min-h-screen bg-black text-white flex items-center justify-center p-4 sm:p-6">
+      <div className="w-full max-w-md bg-gray-950 border border-gray-800 rounded-3xl p-6 sm:p-8">
+        <h1 className="text-4xl font-bold mb-3">
+          Login
+        </h1>
+
         <p className="text-gray-400 mb-8">
           Access your AI developer dashboard.
         </p>
 
         <input
-          className="w-full bg-black border border-gray-700 rounded-xl p-4 mb-5"
+          className="w-full bg-black border border-gray-700 rounded-xl p-4 mb-5 outline-none"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -64,7 +69,7 @@ export default function LoginPage() {
 
         <input
           type="password"
-          className="w-full bg-black border border-gray-700 rounded-xl p-4 mb-6"
+          className="w-full bg-black border border-gray-700 rounded-xl p-4 mb-6 outline-none"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -72,7 +77,7 @@ export default function LoginPage() {
 
         <button
           onClick={handleLogin}
-          className="w-full bg-white text-black py-4 rounded-xl font-bold"
+          className="w-full bg-white text-black py-4 rounded-xl font-bold hover:bg-gray-200 transition"
         >
           Login
         </button>
@@ -84,8 +89,6 @@ export default function LoginPage() {
           </Link>
         </p>
       </div>
-        <Footer />
     </main>
-    
   );
 }

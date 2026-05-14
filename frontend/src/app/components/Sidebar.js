@@ -21,13 +21,13 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="w-72 min-h-screen bg-gray-950 border-r border-gray-800 p-6 flex flex-col justify-between">
+    <aside className="w-full md:w-72 md:min-h-screen bg-gray-950 border-b md:border-b-0 md:border-r border-gray-800 p-4 md:p-6 flex flex-col md:justify-between">
       <div>
-        <h1 className="text-3xl font-bold mb-10 text-white">
+        <h1 className="text-2xl md:text-3xl font-bold mb-5 md:mb-10 text-white">
           AI Dev Platform
         </h1>
 
-        <div className="space-y-4">
+        <div className="flex md:flex-col gap-3 md:gap-4 overflow-x-auto pb-2 md:pb-0">
           {links.map((link) => {
             const isActive = pathname === link.href;
 
@@ -36,8 +36,8 @@ export default function Sidebar() {
                 <div
                   className={
                     isActive
-                      ? "bg-white text-black p-4 rounded-xl font-semibold cursor-pointer"
-                      : "bg-gray-900 p-4 rounded-xl text-gray-400 hover:bg-gray-800 cursor-pointer"
+                      ? "whitespace-nowrap bg-white text-black px-4 py-3 md:p-4 rounded-xl font-semibold cursor-pointer"
+                      : "whitespace-nowrap bg-gray-900 px-4 py-3 md:p-4 rounded-xl text-gray-400 hover:bg-gray-800 cursor-pointer"
                   }
                 >
                   {link.name}
@@ -50,7 +50,7 @@ export default function Sidebar() {
 
       <button
         onClick={handleLogout}
-        className="w-full bg-red-500/20 text-red-400 p-4 rounded-xl font-semibold hover:bg-red-500/30"
+        className="mt-4 md:mt-8 w-full bg-red-500/20 text-red-400 p-3 md:p-4 rounded-xl font-semibold hover:bg-red-500/30"
       >
         Logout
       </button>

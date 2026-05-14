@@ -20,50 +20,56 @@ export default function RegisterPage() {
     }
 
     try {
-      const response = await fetch("https://ai-developer-productivity-platform.onrender.com/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password
-        })
-      });
+      const response = await fetch(
+        "https://ai-developer-productivity-platform.onrender.com/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+          }),
+        }
+      );
 
       const data = await response.json();
 
       if (!response.ok) {
-        alert(data.detail || "Registration failed");
+        toast.error(data.detail || "Registration failed");
         return;
       }
 
-      alert("Registration successful");
+      toast.success("Registration successful");
       router.push("/login");
     } catch (error) {
       console.log(error);
-      alert("Backend connection failed");
+      toast.error("Backend connection failed");
     }
   }
 
   return (
-    <main className="min-h-screen bg-black text-white flex items-center justify-center p-6">
-      <div className="w-full max-w-md bg-gray-950 border border-gray-800 rounded-3xl p-8">
-        <h1 className="text-4xl font-bold mb-3">Create Account</h1>
+    <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-4 sm:p-6">
+      <div className="w-full max-w-md bg-gray-950 border border-gray-800 rounded-3xl p-6 sm:p-8">
+        <h1 className="text-4xl font-bold mb-3">
+          Create Account
+        </h1>
+
         <p className="text-gray-400 mb-8">
           Join AI Developer Productivity Platform.
         </p>
 
         <input
-          className="w-full bg-black border border-gray-700 rounded-xl p-4 mb-5"
+          className="w-full bg-black border border-gray-700 rounded-xl p-4 mb-5 outline-none"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
 
         <input
-          className="w-full bg-black border border-gray-700 rounded-xl p-4 mb-5"
+          className="w-full bg-black border border-gray-700 rounded-xl p-4 mb-5 outline-none"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -71,7 +77,7 @@ export default function RegisterPage() {
 
         <input
           type="password"
-          className="w-full bg-black border border-gray-700 rounded-xl p-4 mb-6"
+          className="w-full bg-black border border-gray-700 rounded-xl p-4 mb-6 outline-none"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -79,7 +85,7 @@ export default function RegisterPage() {
 
         <button
           onClick={handleRegister}
-          className="w-full bg-white text-black py-4 rounded-xl font-bold"
+          className="w-full bg-white text-black py-4 rounded-xl font-bold hover:bg-gray-200 transition"
         >
           Register
         </button>
@@ -91,7 +97,8 @@ export default function RegisterPage() {
           </Link>
         </p>
       </div>
-        <Footer />
+
+      <Footer />
     </main>
   );
 }

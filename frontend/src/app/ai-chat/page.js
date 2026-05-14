@@ -50,7 +50,7 @@ export default function AIChatPage() {
 
   return (
     <ProtectedRoute>
-      <main className="min-h-screen bg-black text-white flex">
+      <main className="min-h-screen bg-black text-white flex flex-col md:flex-row">
         <Sidebar />
 
         <section className="flex-1 p-10 overflow-auto">

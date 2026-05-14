@@ -206,6 +206,7 @@ Return only markdown.
     )
 
     return response.choices[0].message.content
+
 def chat_with_ai(message):
 
     prompt = f"""
