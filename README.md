@@ -143,17 +143,31 @@ AI-Developer-Productivity-Platform
 │
 ├── backend
 │   ├── app
-│   ├── routes
-│   ├── services
-│   └── models
+│   │   ├── models
+│   │   ├── routes
+│   │   ├── services
+│   │   ├── utils
+│   │   ├── database.py
+│   │   └── main.py
+│   │
+│   ├── requirements.txt
+│   └── .env
 │
 ├── frontend
 │   ├── src
-│   ├── app
-│   ├── components
-│   └── pages
+│   │   ├── app
+│   │   ├── components
+│   │   └── styles
+│   │
+│   ├── public
+│   ├── package.json
+│   └── next.config.js
 │
 ├── screenshots
+│
+├── .github
+│   └── workflows
+│       └── deploy.yml
 │
 └── README.md
 ```
